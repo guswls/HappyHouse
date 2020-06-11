@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="false" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<!-- 사용할 DTO들을 예약어로 등록 -->
+		<typeAlias type="com.ssafy.happyhouse.dto.HouseDeal" alias="housedeal"/>
+		<typeAlias type="com.ssafy.happyhouse.dto.UserInfo" alias="userinfo"/>
+		<typeAlias type="com.ssafy.happyhouse.dto.HouseInfo" alias="houseinfo"/>
+		<typeAlias type="com.ssafy.happyhouse.dto.SidoCodeDTO" alias="sidocode"/>
+		<typeAlias type="com.ssafy.happyhouse.dto.SidoDTO" alias="sido"/>
+		<typeAlias type="com.ssafy.happyhouse.dto.GugunDTO" alias="gugun"/>
+		<typeAlias type="com.ssafy.happyhouse.dto.DongDTO" alias="dong"/>
+	</typeAliases>
+
+	<mappers>
+		<!-- 사용할 mapper 등록 -->
+		<mapper resource="mybatis/mapper/HouseDealMapper.xml" />
+		<mapper resource="mybatis/mapper/UserInfoMapper.xml" />
+		<mapper resource="mybatis/mapper/HouseInfoMapper.xml" />
+		<mapper resource="mybatis/mapper/sidocodeMapper.xml" />
+	</mappers>
+</configuration>

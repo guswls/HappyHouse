@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.SidoCode">
+
+	<select id="selectsido" resultType="sido">
+		SELECT left(sido_code,2) sido_code, sido_name 
+			FROM sidocode 
+			ORDER BY sido_code
+	</select>
+
+	<select id="selectgugun" resultType="gugun">
+		SELECT left(gugun_code,5) gugun_code, gugun_name FROM guguncode
+		where left(gugun_code,2) = #{sido_code}
+		ORDER BY gugun_code
+	</select>
+	
+	<select id="selectdong" resultType="dong">
+		SELECT distinct dong, code FROM houseinfo
+		where code = #{gugun_code}
+		ORDER BY dong
+	</select>
+	
+	<select id="selectapt" resultType="houseinfo">
+		SELECT * FROM houseinfo WHERE code = #{code} and dong = #{dong}
+		ORDER BY AptName
+	</select>
+</mapper>

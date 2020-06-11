@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.HouseInfo">
+
+	<select id="searchByAptName" resultType="houseinfo">
+		select * from houseinfo where no = #{no}
+	</select>
+	
+	
+	<!-- 
+	<select id="searchByDong" resultType="houseinfo">
+		select * from houseinfo where dong = #{dong}
+	</select>
+
+	<insert id="insert">
+		insert into houseinfo(dong,aptName,code,buildYear,jibun) values (#{dong}, #{aptName}, #{code}, #{buildYear}, #{jibun})
+	</insert>
+	
+	
+	이부분 체크하기, buildyear랑 jibun 넣는지 안넣는지
+	<update id="update">
+		update houseinfo set no =#{no}, dong =#{dong}, aptname=#{aptname}, code=#{code} where no =#{no}
+	</update>
+	
+	<delete id="delete">
+		delete from houseinfo where no = #{no}
+	</delete>
+	
+	<select id="searchByDongandAptname" resultType="houseinfo">
+		select * from houseinfo where dong = #{dong} and aptname = #{aptname}
+	</select>
+	
+	<select id="searchByJibun" resultType="houseinfo">
+		select * from houseinfo where jibun = ${jibun}
+	</select>
+	
+	<update id="updateName">
+		update houseinfo set aptName = #{nameToChange} where aptName = #{aptName}
+	</update> 
+	
+	-->
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.mapper.HouseDeal">
+
+	<insert id="insert" parameterType="housedeal">
+	</insert>
+
+	<update id="update" parameterType="housedeal">
+	<!-- 	 update s_emp 
+		 set name=#{name}, mailid=#{mailid}, title=#{title}, manager_id=#{manager_id} 
+      	 ,dept_id=#{dept_id},salary=#{salary} 
+     	 where id=#{id}  -->
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		<!-- delete from housedeal where no=#{no}-->
+	</delete>
+
+	<select id="houseDealSelect2" resultType="housedeal" parameterType="string" >
+		      select no, dong, AptName, code, dealAmount, dealAmount,buildYear,
+		  dealYear,dealMonth,dealDay,area,jibun,type,rentMoney 
+		  from housedeal  where no=#{no}
+	</select>
+	
+
+	
+	<select id="houseDealSelectAll" resultType="housedeal">
+		 select no, dong, AptName, code, dealAmount, dealAmount,buildYear,
+		  dealYear,dealMonth,dealDay,area,jibun,type,rentMoney 
+		  from housedeal limit 30
+	</select>
+	
+	
+	
+	    <select id="houseDealSelect" resultType="housedeal" parameterType="String">
+		select a.*,b.img,b.lat,b.lng from housedeal a 
+		left outer join houseinfo b on a.aptname = b.aptname 
+		where a.no = #{no}
+		</select>
+
+
+</mapper>
