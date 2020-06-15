@@ -73,7 +73,7 @@
 <h3> total like : "${totalLike}"</h3>
 <c:if test="${userinfo != null}">
 
-<button id="fav" onclick="addMyList()"  type="button" class="btn btn-danger">관심목록에 추가하기</button><br>
+<button id="fav"  type="button" class="btn btn-danger">관심목록에 추가하기</button><br>
 <button id="myfavlist" onClick="location.href='${root}/myfavlist/${userinfo.userid}'"  type="button" class="btn btn-info">내 관심 리스트</button>
 </c:if>
 		</div>
@@ -100,15 +100,13 @@ $('#fav').click(function () {
 			likeuid : "${userinfo.userid}",
 			likehdid:"${housedeal.no}"
 		}),
-		sucess:function(data){
-			console.log("dgdg");
+		success:function(data){
 			alert("관심목록에 추가되었습니다.");
 		
 			location.reload();
 		},
 		error:function(data){
-			
-			alert("조졌다");
+			alert("Error! 다시 한 번 시도바랍니다!");
 		}
 	});
 });
@@ -116,11 +114,7 @@ function getMyList(){
 	
 }
 
-function addMyList(){
-	console.log("${userinfo}");
-	console.log("으엏엏ㅇㅎ ㅠ");
-	
-}
+
 
 </script>
 
