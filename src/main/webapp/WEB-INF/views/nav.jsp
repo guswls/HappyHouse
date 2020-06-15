@@ -87,6 +87,9 @@
             <a class="nav-link" href="/QnA">Board</a>
           </li>
            <li class="nav-item">
+            <a class="nav-link" href="board">Notice</a>
+          </li>
+           <li class="nav-item">
           <c:if test="${userinfo == null}">
 			${msg}
 			  <a class="nav-link" href="/login">login</a>

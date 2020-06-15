@@ -76,6 +76,10 @@ public class HomeController {
 	}
 	
 
+	@RequestMapping("board")
+	public String board() {
+		return "board";	
+	}
 	@RequestMapping("login")
 	public String login() {
 		return "login";	
