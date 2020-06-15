@@ -8,7 +8,6 @@
 	<insert id="insert" parameterType="userinfo">
 		insert into userinfo (user_id,user_pw,user_name, address, phone) 
      	values (#{userid},#{userPw},#{userName},#{address},#{phone})
-
 	</insert>
 
 	<!-- 회원 수정 -->
@@ -17,7 +16,6 @@
 		 set user_pw=#{userPw}, user_name=#{userName}, address=#{address} 
       	 ,phone=#{phone}
      	 where user_id=#{userid}
-
 	</update>
 	
 	<!--  회원 삭제  -->
@@ -25,15 +23,18 @@
 		delete from userinfo where user_id=#{userid}
 	</delete>
 	
-	
-
 	<!-- 로그인 회원 조회 -->
-	<select id="login" parameterType="userinfo" resultType="userinfo">
-		select user_id as userid, user_pw as userPw from userinfo where user_id=#{userid} and user_pw=#{userPw}
+	<select id="login" parameterType="string" resultType="userinfo">
+		select user_id as userid,
+		user_pw as userPw,
+		user_name as userName,
+		address,
+		phone 
+		from userinfo where user_id=#{userid} and user_pw=#{userPw}
 	</select>
 	
 	<select id="pw" parameterType="userinfo" resultType="string">
-		select user_pw from userinfo where user_id=#{userid} and user_name=#{userName}
+		select user_pw as userPw from userinfo where user_id=#{userid} and user_name=#{userName}
 	</select>
 
 

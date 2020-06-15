@@ -91,9 +91,9 @@ public class HomeController {
 	public String searchpass() {
 		return "searchpass";	
 	}
-	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	@RequestMapping(value = "/QnA", method = RequestMethod.GET)
 	public String notice(Locale locale, Model model) {
-		return "notice";
+		return "QnA";
 	}
 	
 	@GetMapping("housedetail/{no}")
