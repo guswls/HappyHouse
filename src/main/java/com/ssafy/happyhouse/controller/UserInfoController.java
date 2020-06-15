@@ -67,6 +67,8 @@ public class UserInfoController {
 		
 		try {
 			UserInfo selected = uService.login(userinfo);
+			System.out.println(userinfo);
+			System.out.println(selected);
 			session.setAttribute("userinfo", selected);
 			return "redirect:/";// sendredirect			
 		} catch (RuntimeException e) {	

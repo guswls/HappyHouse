@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
 </head>
 <style>
 .rounded {
@@ -61,17 +67,16 @@
 	<tbody>
 	</tbody>
 </table>
-<br><br><br><br>
+<br><br>
+<br><br>
 <h3><a href = "${root }/"> 목록으로 돌아가기 </a></h3>
+<h3> total like : "${totalLike}"</h3>
+<c:if test="${userinfo != null}">
+
+<button id="fav" onclick="addMyList()"  type="button" class="btn btn-danger">관심목록에 추가하기</button><br>
+<button id="myfavlist" onClick="location.href='${root}/myfavlist/${userinfo.userid}'"  type="button" class="btn btn-info">내 관심 리스트</button>
+</c:if>
 		</div>
-		<%-- 	<p> 1. 식별 번호 : ${houseinfo.no }</p>
-			<p> 2. 법정동 명 : ${housedeals.dong }</p>
-			<p> 3. 아파트 이름 : ${housedeals.aptName }</p>
-			<p> 4. 법정동 코드 : ${housedeals.code }</p>
-			<p> 5. 건축 년도 : ${housedeals.buildYear }</p>
-			<p> 6. 거래 가격 : ${housedeals.dealAmount }</p>
-			<p> 7. 지번 주소 : ${housedeals.jibun }</p>
-			<p> 8. 거래 정보 : ${housedeals.type }</p> --%>
 		
 		</c:when>
 		<c:otherwise>
@@ -82,6 +87,43 @@
 	</div>
 	
 	
+<script>
+console.log("${root}");
+$('#fav').click(function () {
+	$.ajax({
+		type:'POST',
+		headers : {
+			"Content-Type" : "application/json"
+		},
+		url:'addfav',
+		data:JSON.stringify({
+			likeuid : "${userinfo.userid}",
+			likehdid:"${housedeal.no}"
+		}),
+		sucess:function(data){
+			console.log("dgdg");
+			alert("관심목록에 추가되었습니다.");
+		
+			location.reload();
+		},
+		error:function(data){
+			
+			alert("조졌다");
+		}
+	});
+});
+function getMyList(){
+	
+}
+
+function addMyList(){
+	console.log("${userinfo}");
+	console.log("으엏엏ㅇㅎ ㅠ");
+	
+}
+
+</script>
 
 </body>
+
 </html>

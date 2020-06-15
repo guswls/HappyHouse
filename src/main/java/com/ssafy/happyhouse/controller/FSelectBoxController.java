@@ -1,5 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,18 +13,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.dto.DongDTO;
+import com.ssafy.happyhouse.dto.Favorite;
 import com.ssafy.happyhouse.dto.GugunDTO;
 import com.ssafy.happyhouse.dto.HouseDeal;
 import com.ssafy.happyhouse.dto.HouseInfo;
 import com.ssafy.happyhouse.dto.SidoDTO;
 import com.ssafy.happyhouse.service.FSelectBoxService;
+import com.ssafy.happyhouse.service.FavoriteService;
 import com.ssafy.happyhouse.service.HouseDealService;
 
 @RestController
@@ -75,8 +81,12 @@ public class FSelectBoxController extends HttpServlet {
 	}
 	
 
+
 	@Autowired
 	HouseDealService hdService;
+	
+	@Autowired
+	FavoriteService favService;
 
 	@GetMapping("/houselist2")
 	public ResponseEntity<Map<String, Object>> selectAll2() {
@@ -89,6 +99,53 @@ public class FSelectBoxController extends HttpServlet {
 		}
 		return entity;
 	}
+	
+
+	@GetMapping("/myfavlist2/{likeuid}")
+	public  ResponseEntity<Map<String, Object>> select23(Model model,@PathVariable String likeuid) throws IOException{
+		ResponseEntity<Map<String, Object>> entity = null;
+		try {
+			
+			
+			List<Integer> temp = favService.searchByUser(likeuid);
+			
+			List<HouseDeal> housedeals = new ArrayList<>();
+			for(int i=0;i<temp.size();i++) {
+					housedeals.add(hdService.search(temp.get(i)));
+				}
+			System.out.println(housedeals);
+			entity = handleSuccess(housedeals);
+			
+		}catch (RuntimeException e) {
+			logger.error("조회실패" , e);
+			entity=handleException(e);
+		}
+		return entity;	
+	}
+	
+
+	@GetMapping("/rank")
+	public  ResponseEntity<Map<String, Object>> selectRank(Model model) throws IOException{
+		ResponseEntity<Map<String, Object>> entity = null;
+		try {
+			
+			
+			List<Integer> temp = favService.getRank();
+			
+			List<HouseDeal> hds = new ArrayList<>();
+			for(int i=0;i<temp.size();i++) {
+				hds.add(hdService.search(temp.get(i)));
+				}
+			System.out.println(hds);
+			entity = handleSuccess(hds);
+			
+		}catch (RuntimeException e) {
+			logger.error("조회실패" , e);
+			entity=handleException(e);
+		}
+		return entity;	
+	}
+	
 	
 	
 	private ResponseEntity<Map<String, Object>> handleSuccess(Object data) {

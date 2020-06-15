@@ -37,7 +37,7 @@
 	    <select id="houseDealSelect" resultType="housedeal" parameterType="String">
 		select a.*,b.img,b.lat,b.lng from housedeal a 
 		left outer join houseinfo b on a.aptname = b.aptname 
-		where a.no = #{no}
+		where a.no = #{no} limit 1;
 		</select>
 
 

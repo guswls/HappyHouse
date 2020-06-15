@@ -75,26 +75,26 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="${root}/">Home</a>
+            <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="${root}about">About</a>
+            <a class="nav-link" href="about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="${root}houselist">Search</a>
+            <a class="nav-link" href="houselist">Search</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="${root}notice">Board</a>
+            <a class="nav-link" href="/notice">Board</a>
           </li>
            <li class="nav-item">
           <c:if test="${userinfo == null}">
 			${msg}
-			  <a class="nav-link" href="${root}login">login</a>
+			  <a class="nav-link" href="/login">login</a>
 			</c:if>
 			<c:if test="${userinfo != null}">
-			<a class="nav-link" href="${root}logout">logout</a>
+			<a class="nav-link" href="/logout">logout</a>
 			<li class="nav-item">
-            <a class="nav-link" href="${root}detail">mypage</a>
+            <a class="nav-link" href="/detail">mypage</a>
           </li>
 		</c:if>
   

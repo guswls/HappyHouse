@@ -28,8 +28,8 @@
 	
 
 	<!-- 로그인 회원 조회 -->
-	<select id="login" parameterType="string" resultType="userinfo">
-		select * from userinfo where user_id=#{userid} and user_pw=#{userPw}
+	<select id="login" parameterType="userinfo" resultType="userinfo">
+		select user_id as userid, user_pw as userPw from userinfo where user_id=#{userid} and user_pw=#{userPw}
 	</select>
 	
 	<select id="pw" parameterType="userinfo" resultType="string">

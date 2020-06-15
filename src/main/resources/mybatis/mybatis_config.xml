@@ -16,6 +16,7 @@
 		<typeAlias type="com.ssafy.happyhouse.dto.SidoDTO" alias="sido"/>
 		<typeAlias type="com.ssafy.happyhouse.dto.GugunDTO" alias="gugun"/>
 		<typeAlias type="com.ssafy.happyhouse.dto.DongDTO" alias="dong"/>
+		<typeAlias type="com.ssafy.happyhouse.dto.Favorite" alias="favorite"/>
 	</typeAliases>
 
 	<mappers>
@@ -24,5 +25,6 @@
 		<mapper resource="mybatis/mapper/UserInfoMapper.xml" />
 		<mapper resource="mybatis/mapper/HouseInfoMapper.xml" />
 		<mapper resource="mybatis/mapper/sidocodeMapper.xml" />
+		<mapper resource="mybatis/mapper/FavoriteMapper.xml" />
 	</mappers>
 </configuration>

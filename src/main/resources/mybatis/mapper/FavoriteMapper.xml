@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.mapper.Favorite">
+
+<insert id="insert" parameterType="favorite">
+insert into savelike (likeuid,likehdid) values (#{likeuid},#{likehdid})
+</insert>
+
+<delete id="delete" parameterType="string">
+delete from savelike where likeid=#{likeid}
+</delete>
+
+<select id="selectByHd" parameterType="int" resultType="int">
+select  count( distinct likeuid ) from savelike where likehdid=#{likehdid};
+</select>
+
+<select id="selectByUser" parameterType="string" resultType="int">
+select  distinct(likehdid) from savelike where likeuid=#{likeuid};
+</select>
+
+<select id="selectAll" resultType="favorite">
+select likeid,likeuid,likehdid,likedate from savelike
+</select>
+
+<select id="getRank" resultType="int">
+select likehdid from savelike group by likehdid order by count( distinct likeuid) desc  limit 5 ; 
+</select>
+</mapper>

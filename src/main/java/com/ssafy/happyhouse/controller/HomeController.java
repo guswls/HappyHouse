@@ -2,8 +2,10 @@ package com.ssafy.happyhouse.controller;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -23,14 +25,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ssafy.happyhouse.dto.Favorite;
 import com.ssafy.happyhouse.dto.HouseDeal;
 import com.ssafy.happyhouse.dto.HousePageBean;
+import com.ssafy.happyhouse.dto.UserInfo;
+import com.ssafy.happyhouse.service.FavoriteService;
 import com.ssafy.happyhouse.service.HouseDealService;
 
 @Controller
@@ -41,6 +48,9 @@ public class HomeController {
 	@Autowired
 	HouseDealService hdService;
 	
+	@Autowired
+	FavoriteService fService;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
@@ -49,7 +59,7 @@ public class HomeController {
 
 	@RequestMapping("about")
 	public String about() {
-		return "about";
+		return "redirect:/about";
 	}
 
 	@RequestMapping("houselist")
@@ -86,23 +96,46 @@ public class HomeController {
 		return "notice";
 	}
 	
-	@RequestMapping("housedetail/{no}")
+	@GetMapping("housedetail/{no}")
 	public  String  select(Model model,@PathVariable String no) throws IOException{
 		HouseDeal house = null;
 
 		try {
 			HouseDeal housedeal = hdService.search(Integer.parseInt(no));
+			int totalLike = fService.getTotal(Integer.parseInt(no));
 			model.addAttribute("housedeal",housedeal);
+			model.addAttribute("totalLike",totalLike);
 			
 			return "housedetail";
 		}catch (RuntimeException e) {
-			logger.error("로그인 실패" , e);
+			logger.error("조회실패" , e);
 			model.addAttribute("message", e.getMessage());
 			return "error";
 		}
 		
 	}
 	
+
+	@PostMapping("housedetail/addfav")
+	public ResponseEntity<Map<String, Object>> addfav(Model model,@RequestBody Favorite favorite){
+		ResponseEntity<Map<String, Object>> entity = null;
+		try {
+			int result = fService.insert(favorite);
+			entity = handleSuccess(favorite.getLikeuid()+"가 추가되었습니다.");
+			System.out.println("머야 추가된건가" + favorite.getLikeuid());
+			int totalLike = fService.getTotal(favorite.getLikehdid());
+			model.addAttribute("totalLike",totalLike);
+		} catch (RuntimeException e) {
+			entity = handleException(e);
+		}
+		System.out.println(entity);
+		return entity;
+	}
+
+	@RequestMapping("/myfavlist/{likeuid}")
+	public String myfavlist() {
+		return "myfavlist";
+	}
 	
 	@GetMapping("/houselist")
 	public String selectAll() {
@@ -111,6 +144,8 @@ public class HomeController {
 	
 	
 
+
+	
 	private ResponseEntity<Map<String, Object>> handleSuccess(Object data) {
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("status", true);
