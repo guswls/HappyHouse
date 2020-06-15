@@ -149,8 +149,6 @@ public class HomeController {
 	}
 	
 
-
-
 	
 	private ResponseEntity<Map<String, Object>> handleSuccess(Object data) {
 		Map<String, Object> resultMap = new HashMap<>();
