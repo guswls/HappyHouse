@@ -18,4 +18,5 @@ public interface HouseDealService {
 
 	List<HouseDeal> searchByOption(List<String> type, String radio, String by, String keyword);
 	
+	HouseDeal searchRecent(String aptName);
 }

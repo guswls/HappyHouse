@@ -95,6 +95,16 @@ public class FSelectBoxController extends HttpServlet {
 	
 	@Autowired
 	FavoriteService favService;
+	
+	@RequestMapping(value = "/recent/{aptName}", method = RequestMethod.GET)
+	public ResponseEntity<String> SearchRecentDealAmount(@PathVariable("aptName") String aptName) throws Exception {
+		String recent = hdService.searchRecent(aptName).getDealAmount().trim();
+		if (recent.length() == 0) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<String>(recent, HttpStatus.OK);
+	}
+
 
 	@GetMapping("/houselist2")
 	public ResponseEntity<Map<String, Object>> selectAll2() {
