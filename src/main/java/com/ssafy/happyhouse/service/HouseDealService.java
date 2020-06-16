@@ -15,5 +15,7 @@ public interface HouseDealService {
 	int delete( int no);
 	
 	int update(HouseDeal housedeal);
+
+	List<HouseDeal> searchByOption(List<String> type, String radio, String by, String keyword);
 	
 }

@@ -148,6 +148,7 @@ public class HomeController {
 		return"houselist";
 	}
 	
+	   
 
 	
 	private ResponseEntity<Map<String, Object>> handleSuccess(Object data) {

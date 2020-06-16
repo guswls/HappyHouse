@@ -20,4 +20,6 @@ public interface HouseDealRepo {
 	int getTotalCount(HousePageBean bean);
 
 	List<HouseDeal> searchAll(int currentPage, int sizePerPage, HousePageBean bean);
+	
+	List<HouseDeal> searchByOption(List<String> type, String radio, String by, String keyword);
 }

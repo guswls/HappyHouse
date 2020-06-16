@@ -54,4 +54,18 @@ public class HouseDealRepoImpl implements HouseDealRepo {
 		return 0;
 	}
 
+	@Override
+	public List<HouseDeal> searchByOption(List<String> type, String radio, String by, String keyword) {
+		HousePageBean pagebean = new HousePageBean();
+		int[] st = new int[type.size()];
+		for(int i=0;i<type.size();i++) {
+			st[i]= Integer.parseInt(type.get(i)) +1;
+		}
+		pagebean.setOrderType(radio);
+		pagebean.setKeyword(keyword);
+		pagebean.setBy(by);
+		System.out.println(pagebean.toString());
+		pagebean.setSearchType(st);
+		return template.selectList(ns+"searchByOption", pagebean);
+	}
 }

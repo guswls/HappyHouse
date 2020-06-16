@@ -43,6 +43,12 @@ public class HouseDealServiceImpl implements HouseDealService {
 		// TODO Auto-generated method stub
 		return hdRepo.update(housedeal);
 	}
+
+	@Override
+	public List<HouseDeal> searchByOption(List<String> type, String radio, String by, String keyword) {
+		// TODO Auto-generated method stub
+		return hdRepo.searchByOption(type, radio, by, keyword);
+	}
 	
 	
 	
