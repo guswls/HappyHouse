@@ -211,6 +211,45 @@ public class FSelectBoxController extends HttpServlet {
 
 	   
 	
+    @RequestMapping(value = "/news")
+    public ResponseEntity<Map<String, Object>> todayNews() throws IOException {
+      ResponseEntity<Map<String, Object>> entity = null;
+      try {
+      String url ="https://land.naver.com/news/headline.nhn?bss_ymd=2020061";
+    
+       
+       Document doc =Jsoup.connect(url).get();
+       Elements element = doc.select("div.section_headline");
+       String title = element.select("ul").text();
+       
+       List<String> temp = new ArrayList<>();
+       for(Element el : element.select("li")) {
+          //System.out.println(el.text());
+          temp.add(el.text());       
+          System.out.println(el.text());
+       }
+       
+       List<String> news = new ArrayList<>();
+       boolean[] chk = new boolean[temp.size()];
+       while(news.size() <5) {
+          double rv = Math.random();    
+           int iv = (int)(rv * temp.size());
+           if(!chk[iv]) {
+              news.add(temp.get(iv));
+              chk[iv] = true;
+           }
+       }
+       System.out.println(news);
+    
+       entity = handleSuccess(news);
+      }catch (RuntimeException e) {
+          entity = handleException(e);
+       }
+       System.out.println(entity + "이거는 news");
+       return entity;
+    }
+
+	
 	
 	private ResponseEntity<Map<String, Object>> handleSuccess(Object data) {
 		Map<String, Object> resultMap = new HashMap<>();
