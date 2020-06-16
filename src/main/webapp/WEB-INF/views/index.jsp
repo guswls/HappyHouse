@@ -7,14 +7,20 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
+
 <body>
 
 <!-- 이부분 고쳐야함 -->
   <%@ include file = "/WEB-INF/views/nav.jsp"%>
   <!-- Main Content -->
+     
+
+   
+
   
   <%@ include file = "/WEB-INF/views/map.jsp"%>
   <hr>
+
 
   <!-- Footer -->
   <footer>
@@ -61,5 +67,7 @@
   <script src="js/clean-blog.min.js"></script> -->
 
 </body>
+  
+
 
 </html>

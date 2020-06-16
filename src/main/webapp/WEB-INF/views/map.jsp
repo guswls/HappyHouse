@@ -5,6 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+ <style>
+       
+            #container2{
+                width: 1080px;
+                padding: 20px;
+                margin:0 auto;
+            }
+          
+            #sidebar{
+                width: 250px;
+                padding: 440px;
+                float: right;
+                margin-top: 600px;
+                margin-right:100px;
+                background: #eee;
+            }
+        </style>
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <c:url value="/" var="root" />
@@ -15,7 +32,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
 </head>
 <body>
+
 <div class="container ">
+
 <section id="index_section">
 			<div class="card col-sm-12" style="min-height: 850px; align: center">
 				<div class="card-body">
@@ -127,7 +146,7 @@ function geocode(jsonData) {
 		let tmpLat;
 		let tmpLng;
 		$.get("https://maps.googleapis.com/maps/api/geocode/json"
-				,{	key:'AIzaSyCUXrfnWjlZ0Mc-JesTkovpNbhhafBYbhs'
+				,{	key:'AIzaSyAF4qweFIAhUwelzQWZ1x8h0IDHEks2o9E'
 					, address:vo.dong+"+"+vo.AptName+"+"+vo.jibun
 				}
 				, function(data, status) {
@@ -143,6 +162,7 @@ function geocode(jsonData) {
 	});//each
 }
 </script>
+
 <div class ="container row" style = " align : center" >
 시/도 :  <select  class="form-control col-md-4" id="sido">
 	<option value="0">선택</option>
@@ -170,11 +190,13 @@ function geocode(jsonData) {
 	<tbody>
 	</tbody>
 </table>
+
+
 <!-- here end -->
 <!-- map start -->
 <div id="map" style="width: 100%; height: 500px; margin: auto;"></div>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUXrfnWjlZ0Mc-JesTkovpNbhhafBYbhs&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF4qweFIAhUwezQWZ1x8h0IDHEks2o9E&callback=initMap"></script>
 <script>
 	var multi = {lat: 37.5665734, lng: 126.978179};
 	var map;
@@ -204,12 +226,59 @@ function geocode(jsonData) {
 <!-- map end -->
 
 				</div>
+				
 			</div>
+			
+			
 		</section>
 		<!-- section end -->
 
 
 </div>
+
+		 <aside style="float:right; color:black; width:300px; margin-top:-900px; ">
+		   <h1> 오늘의 부동산 뉴스 </h1>
+   <form>
+   <div id="news">
+
+   </div>
+  
+      
+   </form>
+  </aside>
+
+
+
+  <script>
+  function getNews() {
+      $.ajax({ 
+          type : 'GET',
+          url : '/news',
+          dataType : 'json',
+          success : function(result) {  
+     
+             $("#news").empty();
+             var count = 1;
+
+             var htmlTxt = "<p>" ;
+             $.each(result.data, function(index, value) {
+              
+                htmlTxt += "뉴스"+ (count++)+"번 : "+value+"<br><br>";
+                 
+             });
+             htmlTxt += '</p>';
+             $('#news').html(htmlTxt);
+          },
+          error: function (e) { 
+             console.log(e.responseText);
+                 alert("통신 Error" + e);
+             } 
+       });
+    
+}
+  getNews();
+  
+  </script>
 
 </body>
 </html>

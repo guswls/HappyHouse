@@ -46,6 +46,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <style>
+.vertical-menu {
+  width: 200px;
+}
+
+.vertical-menu a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
 
   <title>Happy house</title>
 
@@ -109,6 +131,9 @@
       </div>
     </div>
   </nav>
+  
+
+
 
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('${root}/resources/img/home-bg.jpg')">
@@ -126,6 +151,8 @@
     </div>
   </header>
   
-  
+
   </body>
+  
+
   
