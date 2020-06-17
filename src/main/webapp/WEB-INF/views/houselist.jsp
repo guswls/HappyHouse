@@ -14,7 +14,6 @@
    <script type="text/javascript">
       function pageMove(pg) { 
          document.getElementById("pg").value=pg;
-         
          document.getElementById("pageform").submit();
       }
    </script>
@@ -25,9 +24,6 @@
 <body>
 <%@ include file = "/WEB-INF/views/nav.jsp"%>
 <br>
-
-
-
 
 <br>
    <%-- <%@ include file="/user/userinfo.jsp"%> --%>
@@ -105,15 +101,14 @@ function loadHouseDeals() {
           type : 'GET',
           url : '${root}houselist2',
           dataType : 'json',
-          success : function(result) {  
-     
+          success : function(result) {
              $("#housedeals").empty();
 
-             var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
-             '<th>거래정보</th>' ;
+             var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
+             '<th>거래정보</th></tr>' ;
              $.each(result.data, function(index, value) {
               
-                htmlTxt += "<tr><td class='item'  HouseDealNo='"+value.no+"'><a href =${root}/housedetail/"+value.no+">"+ value.no  +"</td>"
+                htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'><a href =${root}/housedetail/"+value.no+">"+ value.no  +"</td>"
                          +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
                          +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.aptName  +"</td>"
                          +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.dealAmount   +"</td>"
@@ -134,40 +129,39 @@ loadHouseDeals();
 
 
 function searchByOption() {
-	console.log("dgasdfadf");
-	console.log($("#radioChk>:radio:checked").val());
-	let searchType = []; 
-		$("#searchTypeContain>label>:checked")
-			.each(
-					(i, e) => { searchType.push(e.value);}
-			);
-	console.log(searchType);
-	console.log( {
-    	type: searchType,
-    	radio:  $("#radioChk>:radio:checked").val(),
-    	by: $("#by").val() ,
-    	keyword:$("#keyword") .val() 
-	}
+   console.log($("#radioChk>:radio:checked").val());
+   let searchType = []; 
+      $("#searchTypeContain>label>:checked")
+         .each(
+               (i, e) => { searchType.push(e.value);}
+         );
+   console.log(searchType);
+   console.log( {
+       type: searchType,
+       radio:  $("#radioChk>:radio:checked").val(),
+       by: $("#by").val() ,
+       keyword:$("#keyword") .val() 
+   }
     );
-	
+   
     $.ajax({ 
         type : 'POST',
         url : '${root}houselist3', 
         dataType : 'json',
         contentType: "application/json;charset=UTF8",
         data: JSON.stringify ({ 
-        	type: searchType,
-        	radio:  $("#radioChk>:radio:checked").val(),
-        	by: $("#by").val(),
-        	keyword:$("#keyword").val() 
-        	
+           type: searchType,
+           radio:  $("#radioChk>:radio:checked").val(),
+           by: $("#by").val(),
+           keyword:$("#keyword").val() 
+           
         }),
         success : function(result) {  
-   	console.log(result);
+      console.log(result);
            $("#housedeals").empty();
 
-           var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
-           '<th>거래정보</th>' ;
+           var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
+           '<th>거래정보</th></tr>' ;
            $.each(result.data, function(index, value) {
            
               htmlTxt += "<tr><td class='item'  HouseDealNo='"+value.no+"'><a href =${root}/housedetail/"+value.no+">"+ value.no  +"</td>"
@@ -175,14 +169,13 @@ function searchByOption() {
                        +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.aptName  +"</td>"
                        +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.dealAmount   +"</td>"
                        +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.type   +"</td></tr>";
-               
            });
            htmlTxt += '</table>';
            $('#housedeals').html(htmlTxt);
         },
         error: function (e) { 
            console.log(e.responseText);
-               alert("통신 Error asdfasdf" + e);
+               alert("통신 Error" + e);
            } 
      });
   
