@@ -164,11 +164,11 @@ function searchByOption() {
            '<th>거래정보</th></tr>' ;
            $.each(result.data, function(index, value) {
            
-              htmlTxt += "<tr><td class='item'  HouseDealNo='"+value.no+"'><a href =${root}/housedetail/"+value.no+">"+ value.no  +"</td>"
-                       +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
-                       +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.aptName  +"</td>"
-                       +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.dealAmount   +"</td>"
-                       +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.type   +"</td></tr>";
+        	   htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"
+               +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
+               +"<td class='item' HouseDealNo='"+value.no+"'  ><a href =${root}/housedetail/"+value.no+">"+ value.aptName  +"</td>"
+               +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.dealAmount   +"</td>"
+               +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.type   +"</td></tr>";
            });
            htmlTxt += '</table>';
            $('#housedeals').html(htmlTxt);
