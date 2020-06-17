@@ -10,7 +10,7 @@
 <head>
 <style>
 #div1 {
-	width: 65%;
+	width: 70%;
 	float: left;
 }
 
@@ -38,7 +38,6 @@
 				<%@ include file="/WEB-INF/views/map.jsp"%>
 			</div>
 
-
 			<div class="div2">
 				<img src="${root}resources/img/newspaper.png" width="50px"
 					align="left">
@@ -48,65 +47,76 @@
 				</form>
 
 
-				<form>
 
-
+				<form id="move">
 					<img src="${root}resources/img/mover-truck.png" width="50px"
 						align="left">
-
-
-
 					<h1>
-						&nbsp; 이사 견적 보러가기
-					<%-- 	<button type="button" id="btnEvent" class="btnEvent">
-							<img src="${root}resources/img/click.png" width="50px"
-								align="left">
-						</button> 
-						 --%>
-						<a href="${root}move" role="button" id = "btnEvent">
-						<img src="${root}resources/img/click.png" width="50px"
-								align="right"></a>
+						&nbsp; 이삿짐 간단 견적<img src="${root}resources/img/click.png" width="50px">
+					
 					</h1>
 					
+					<div id="move1">
 
+						<form>
+
+							<label>출발위치 : <input type="text" class="form-control"
+								id="start" required="required"></label> 
+								 <label>도착위치 : <input
+								type="text" class="form-control" id="arri" required="required"></label><br>
+
+							<label>이사날짜 : <input type="date" class="form-control"
+								id="day" required="required"></label> <label>짐 갯수 : <input
+								type="text" class="form-control" id="car" required="required"></label> 
+								<input type="button" value="견적 제출" class="btn btn-primary" onclick="registFun()">
+
+						</form>
+					</div>
 				</form>
 			</div>
+
+
 		</div>
+	</div>
 
-		<hr>
 
-		<!-- Footer -->
-		<footer>
-			<div class="container" id="footer">
-				<div class="row">
-					<div class="col-lg-8 col-md-8 mx-auto">
-						<ul class="list-inline text-center">
-							<li class="list-inline-item"><a href="#"> <span
-									class="fa-stack fa-lg"> <i
-										class="fas fa-circle fa-stack-2x"></i> <i
-										class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-								</span>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <span
-									class="fa-stack fa-lg"> <i
-										class="fas fa-circle fa-stack-2x"></i> <i
-										class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-								</span>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <span
-									class="fa-stack fa-lg"> <i
-										class="fas fa-circle fa-stack-2x"></i> <i
-										class="fab fa-github fa-stack-1x fa-inverse"></i>
-								</span>
-							</a></li>
-						</ul>
-						<p class="copyright text-muted">Copyright &copy; Your Website
-							2020</p>
-					</div>
+
+
+	<hr>
+
+	<!-- Footer -->
+	<footer>
+		<div class="container" id="footer">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 mx-auto">
+					<ul class="list-inline text-center">
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+						<li class="list-inline-item"><a href="#"> <span
+								class="fa-stack fa-lg"> <i
+									class="fas fa-circle fa-stack-2x"></i> <i
+									class="fab fa-github fa-stack-1x fa-inverse"></i>
+							</span>
+						</a></li>
+					</ul>
+					<p class="copyright text-muted">Copyright &copy; Your Website
+						2020</p>
 				</div>
 			</div>
-		</footer>
-	</div>
+		</div>
+	</footer>
+
+
 	<!--  Bootstrap core JavaScript 
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -145,9 +155,10 @@
 	}
 	getNews();
 
-	$(".btnEvent").on("click", function() {
-		
-	});
+	function registFun(){
+		alert("견적서가 제출되었습니다");
+	}
+
 </script>
 
 </html>
