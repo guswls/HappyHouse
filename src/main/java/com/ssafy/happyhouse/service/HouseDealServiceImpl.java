@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.dto.HouseDeal;
 import com.ssafy.happyhouse.repo.HouseDealRepo;
+import com.ssafy.happyhouse.util.Paging;
 
 @Service
 public class HouseDealServiceImpl implements HouseDealService {
@@ -42,6 +43,16 @@ public class HouseDealServiceImpl implements HouseDealService {
 	public int update(HouseDeal housedeal) {
 		// TODO Auto-generated method stub
 		return hdRepo.update(housedeal);
+	}
+
+	@Override
+	public int countBoard() {
+		return hdRepo.countBoard();
+	}
+
+	@Override
+	public List<HouseDeal> selectBoard(Paging vo) {
+		return hdRepo.selectBoard(vo);
 	}
 	
 	

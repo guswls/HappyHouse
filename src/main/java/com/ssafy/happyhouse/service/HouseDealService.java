@@ -3,6 +3,7 @@ package com.ssafy.happyhouse.service;
 import java.util.List;
 
 import com.ssafy.happyhouse.dto.HouseDeal;
+import com.ssafy.happyhouse.util.Paging;
 
 public interface HouseDealService {
 
@@ -16,4 +17,7 @@ public interface HouseDealService {
 	
 	int update(HouseDeal housedeal);
 	
+	
+	public int countBoard();
+	public List<HouseDeal> selectBoard(Paging vo);
 }

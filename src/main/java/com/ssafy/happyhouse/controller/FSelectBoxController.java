@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.dto.DongDTO;
@@ -34,6 +35,9 @@ import com.ssafy.happyhouse.dto.SidoDTO;
 import com.ssafy.happyhouse.service.FSelectBoxService;
 import com.ssafy.happyhouse.service.FavoriteService;
 import com.ssafy.happyhouse.service.HouseDealService;
+import com.ssafy.happyhouse.util.Paging;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class FSelectBoxController extends HttpServlet {
@@ -98,6 +102,24 @@ public class FSelectBoxController extends HttpServlet {
 		try {
 			List<HouseDeal> housedeals = hdService.searchAll();
 			entity = handleSuccess(housedeals);
+			String nowPage ="1", cntPerPage="10";
+			
+	       	int total = hdService.countBoard();
+	       	Paging vo = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+	       	List<HouseDeal>viewAll = hdService.selectBoard(vo);
+	       	Paging paging = vo;
+	       	Map<String, Object> list = new HashMap<String, Object>();
+	       	list.put("viewAll", viewAll);
+	       	list.put("paging", paging);
+	       	list.put("nowPage", nowPage);
+	       	list.put("cntPerPage",cntPerPage);
+	       	list.put("housedeals", viewAll);
+	       	Map<String, Object> data = new HashMap<String, Object>();
+	       	////list.put("data",viewAll);
+	       	
+	       	return new ResponseEntity<Map<String,Object>>(list, HttpStatus.OK);
+	       	
+	       	
 		}catch (RuntimeException e) {
 			entity=handleException(e);
 		}
@@ -189,6 +211,39 @@ public class FSelectBoxController extends HttpServlet {
        return entity;
     }
 
+    
+    
+    
+    
+    @ApiOperation(value = "리스트 페이징", response = Map.class)
+   	@GetMapping("boardList")
+   	public ResponseEntity<Map<String,Object>>boardList(Paging vo, 
+   			@RequestParam(value="nowPage", required=false)String nowPage,
+   			@RequestParam(value="cntPerPage", required=false)String cntPerPage) {
+       	int total = hdService.countBoard();
+       	if (nowPage == null && cntPerPage == null) {
+       		nowPage = "1";
+       		cntPerPage = "10";
+       	} else if (nowPage == null) {
+       		nowPage = "1";
+       	} else if (cntPerPage == null) { 
+       		cntPerPage = "10";
+       	}
+       	vo = new Paging(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+       	List<HouseDeal>viewAll = hdService.selectBoard(vo);
+       	Paging paging = vo;
+       	Map<String, Object> list = new HashMap<String, Object>();
+       	list.put("viewAll", viewAll);
+       	list.put("paging", paging);
+       	list.put("nowPage", nowPage);
+       	list.put("cntPerPage",cntPerPage);
+       	list.put("housedeals", viewAll);
+       	Map<String, Object> data = new HashMap<String, Object>();
+       	data.put("data",viewAll);
+       
+   		return new ResponseEntity<Map<String,Object>>(list, HttpStatus.OK);
+   	}
+    
 	
 	
 	private ResponseEntity<Map<String, Object>> handleSuccess(Object data) {
