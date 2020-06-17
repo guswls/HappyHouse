@@ -97,6 +97,11 @@ public class HomeController {
 	public String searchpass() {
 		return "searchpass";	
 	}
+	
+	@RequestMapping("move")
+	public String move() {
+		return "move";
+	}
 	@RequestMapping(value = "/QnA", method = RequestMethod.GET)
 	public String notice(Locale locale, Model model) {
 		return "QnA";
