@@ -13,11 +13,11 @@ delete from savelike where likeid=#{likeid}
 </delete>
 
 <select id="selectByHd" parameterType="int" resultType="int">
-select  count( distinct likeuid ) from savelike where likehdid=#{likehdid};
+select  count( distinct likeuid ) from savelike where likehdid=#{likehdid}
 </select>
 
 <select id="selectByUser" parameterType="string" resultType="int">
-select  distinct(likehdid) from savelike where likeuid=#{likeuid};
+select  distinct(likehdid) from savelike where likeuid=#{likeuid} order by likedate desc
 </select>
 
 <select id="selectAll" resultType="favorite">
@@ -25,6 +25,6 @@ select likeid,likeuid,likehdid,likedate from savelike
 </select>
 
 <select id="getRank" resultType="int">
-select likehdid from savelike group by likehdid order by count( distinct likeuid) desc  limit 5 ; 
+select likehdid from savelike group by likehdid order by count( distinct likeuid) desc  limit 5 
 </select>
 </mapper>

@@ -14,7 +14,7 @@
 </head>
 <body>
 <%@ include file = "/WEB-INF/views/nav.jsp"%>
-<h1> MY FAV LIST </h1>
+<h1> <img src="/resources/img/heart.png" width="50px"> 관심 거래 목록 리스트</h1>
 
    <form>
    <div id="housedeals">
@@ -32,7 +32,7 @@
       
    </form>
 
-<button id="rank" onclick="getRank()" type="button" class="btn btn-danger">인기순위 확인하기</button><br>
+<button id="rank" onclick="getRank()" type="button" class="btn btn-default"><img src="/resources/img/crown.png" width="50px"><h3>인기순위 확인하기</h3></button><br>
    <form>
    <div id="hds">
 
