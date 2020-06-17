@@ -62,8 +62,8 @@ function getRank() {
 			
 			 $("#hds").empty();
 			 var count = 1;
-	           var htmlTxt = '<table id="rank" class="table table-bordered table-condensed"><th>순위</th><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
-	           '<th>거래정보</th>' ;
+	           var htmlTxt = '<table id="rank" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>순위</th><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
+	           '<th>거래정보</th></tr>' ;
 	           $.each(result.data, function(index, value) {
 	            
 	              htmlTxt += "<tr><td class='item'  HouseDealNo='"+value.no+"'><a href =${root}/housedetail/"+value.no+">"+ (count++)  +"</td>"
@@ -96,8 +96,8 @@ function loadHouseDeals() {
    	
            $("#housedeals").empty();
 			
-           var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
-           '<th>거래정보</th>' ;
+           var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
+           '<th>거래정보</th></tr>' ;
            $.each(result.data, function(index, value) {
             
               htmlTxt += "<tr><td class='item'  HouseDealNo='"+value.no+"'><a href =${root}/housedetail/"+value.no+">"+ value.no  +"</td>"

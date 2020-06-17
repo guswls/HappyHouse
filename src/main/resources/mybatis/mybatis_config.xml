@@ -17,7 +17,8 @@
 		<typeAlias type="com.ssafy.happyhouse.dto.GugunDTO" alias="gugun"/>
 		<typeAlias type="com.ssafy.happyhouse.dto.DongDTO" alias="dong"/>
 		<typeAlias type="com.ssafy.happyhouse.dto.Favorite" alias="favorite"/>
-			<typeAlias type="com.ssafy.happyhouse.dto.Notice" alias="notice"/>
+		<typeAlias type="com.ssafy.happyhouse.dto.Notice" alias="notice"/>
+		<typeAlias type="com.ssafy.happyhouse.dto.HousePageBean" alias="pagebean"/>
 	</typeAliases>
 
 	<mappers>
