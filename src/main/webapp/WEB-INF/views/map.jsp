@@ -35,7 +35,7 @@
 <br>
 <table class = "table table-border table-hover">
 	<thead>
-		<tr>
+		<tr bgcolor="#e0e0eb">
 			<th>번호</th>
 			<th>법정동</th>
 			<th>아파트이름</th>

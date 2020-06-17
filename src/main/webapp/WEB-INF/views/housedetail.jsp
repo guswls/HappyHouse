@@ -20,7 +20,7 @@
   height: 40px;
   color: white;
   text-align: center;
-  background: #58ACFA;
+  background: #8585ad;
   border-radius: 50px;
  
 
@@ -53,16 +53,25 @@
 	<table class = "tablesheet " >
 	
 		<tr>
-			
 			<td class ='rounded'>법정동</td>  <td > ${housedeal.dong }</td> 	
-		</tr><tr>
+		</tr>
+		<tr>
 			<td  class ='rounded'>아파트이름</td> <td> ${housedeal.aptName }</td>				
-		</tr><tr>
-			<td  class ='rounded'>지번</td> <td> ${housedeal.jibun }</td>			
-		</tr><tr>
+		</tr>
+		<tr>
 			<td  class ='rounded'>건축년도</td> <td> ${housedeal.buildYear }</td>			
-		</tr><tr>
-			<td  class ='rounded'>거래 가격 </td> <td> ${housedeal.dealAmount }</td>			
+		</tr>
+		<tr>
+			<td  class ='rounded'>층수 </td> <td> ${housedeal.floor }층</td>			
+		</tr>
+		<tr>
+			<td  class ='rounded'>면적 </td> <td> ${housedeal.area }㎡</td>			
+		</tr>
+		<tr>
+			<td  class ='rounded'>거래 일자 </td> <td> ${housedeal.dealYear }.${housedeal.dealMonth }.${housedeal.dealDay }</td>			
+		</tr>
+		<tr>
+			<td  class ='rounded'>거래 가격 </td> <td> ${housedeal.dealAmount }만원</td>			
 		</tr>
 	<tbody>
 	</tbody>
