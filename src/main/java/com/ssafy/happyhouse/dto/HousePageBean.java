@@ -23,9 +23,12 @@ public class HousePageBean implements Serializable {
 	 * 2 : 다세대 매매
 	 * 3 : 다세대 전월세  
 	 * */
-	private boolean[] searchType;
+	private int[] searchType;
 	private String orderType;
 	private boolean isDesc;
+	private String keyword;
+	private String by;
+
 	
 	
 

@@ -69,12 +69,12 @@
 </table>
 <br><br>
 <br><br>
-<h3><a href = "${root }/"> 목록으로 돌아가기 </a></h3>
-<h3> <img src="${root}resources/img/heart.png" width="50px">total like : "${totalLike}"</h3>
+<h3><a href = "${root }/"><img src="/resources/img/return2.png" width="50px"> 목록으로 돌아가기 </a></h3>
+<h3><img src="/resources/img/heart.png" width="50px"> 총 ${totalLike}명이 이 게시글에 관심을 가지고 있어요!</h3>
 <c:if test="${userinfo != null}">
 
-<button id="fav"  type="button" class="btn btn-danger">관심목록에 추가하기</button><br>
-<button id="myfavlist" onClick="location.href='${root}/myfavlist/${userinfo.userid}'"  type="button" class="btn btn-info">내 관심 리스트</button>
+<button id="fav"  type="button" class="btn btn-default"><img src="/resources/img/heart2.png" width="50px">관심목록에 추가하기</button><br>
+<button id="myfavlist" onClick="location.href='${root}/myfavlist/${userinfo.userid}'"  type="button" class="btn btn-default"><img src="/resources/img/register.png" width="50px">내 관심 리스트 확인하기</button>
 </c:if>
 		</div>
 		

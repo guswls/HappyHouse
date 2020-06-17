@@ -236,10 +236,10 @@ function searchByOption() {
             $("#housedeals").empty();
             var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
             '<th>거래정보</th></tr>' ;
-            console.log("dd");
+            console.log("ddasdfasdfa");
             console.log("data : ",result);
-            console.log(result.housedeals);
-            $.each(result.housedeals, function(index, value) {
+            console.log(result.data);
+            $.each(result.data, function(index, value) {
              
                htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"
                         +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
@@ -250,32 +250,8 @@ function searchByOption() {
             });
             htmlTxt += '</table><br>';
     
-            var tt= '<div style="display: block; text-align: center;">';
             
-            if(result.paging.startPage !=1){
-         	   tt += "<input type ='button' onclick ='HouseLoadPage2("+(result.paging.startPage-1)+","+result.paging.cntPerPage+")' value ='<'></input>";
-            }
-            for(var i = result.paging.startPage; i<result.paging.endPage; i++){
-         	
-         	  if(i ==  result.paging.startPage){
-         		  tt += '<b> ' + "<input type ='button' value= "+ i + '> </input></b>';
-         	  }else{
-         		  tt += '<b>' + "<input type ='button' onclick ='HouseLoadPage2("+i+","+result.paging.cntPerPage+")' value= "+ i + '> </input></b>';
-              	   }
-            }
-            
-            if(result.paging.startPage != result.paging.lastPage){
-         	   
-         	   tt += "<input type ='button' onclick ='HouseLoadPage2("+(result.paging.endPage+1)+","+result.paging.cntPerPage+")' value ='>'> </input>";
-         	   
-         	 }
-         
-
-            tt += '</div>';
-            console.log(tt + "ddasdfasd");
-
-            
-            $('#housedeals').html(htmlTxt + tt);
+            $('#housedeals').html(htmlTxt);
         },
         error: function (e) { 
            console.log(e.responseText);

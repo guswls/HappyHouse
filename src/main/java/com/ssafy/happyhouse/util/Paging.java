@@ -19,7 +19,7 @@ public class Paging {
 	private int start;
 	private int end;
 	private int rn;
-	private int cntPage = 5;
+	private int cntPage = 10;
 	
 	public Paging(int total, int nowPage, int cntPerPage) {
 		setNowPage(nowPage);
