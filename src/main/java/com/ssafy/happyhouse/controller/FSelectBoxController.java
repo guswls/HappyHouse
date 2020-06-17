@@ -218,7 +218,7 @@ public class FSelectBoxController extends HttpServlet {
        for(Element el : element.select("li")) {
           //System.out.println(el.text());
           temp.add(el.text());       
-          System.out.println(el.text());
+        //  System.out.println(el.text());
        }
        
        List<String> news = new ArrayList<>();
