@@ -20,7 +20,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.dto.DongDTO;
-import com.ssafy.happyhouse.dto.Favorite;
 import com.ssafy.happyhouse.dto.GugunDTO;
 import com.ssafy.happyhouse.dto.HouseDeal;
 import com.ssafy.happyhouse.dto.HouseInfo;
@@ -96,6 +97,16 @@ public class FSelectBoxController extends HttpServlet {
 	
 	@Autowired
 	FavoriteService favService;
+	
+	@RequestMapping(value = "/recent/{aptName}", method = RequestMethod.GET)
+	public ResponseEntity<String> SearchRecentDealAmount(@PathVariable("aptName") String aptName) throws Exception {
+		String recent = hdService.searchRecent(aptName).getDealAmount().trim();
+		if (recent.length() == 0) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<String>(recent, HttpStatus.OK);
+	}
+
 
 	@GetMapping("/houselist2")
 	public ResponseEntity<Map<String, Object>> selectAll2() {
@@ -138,18 +149,13 @@ public class FSelectBoxController extends HttpServlet {
 		System.out.println("답 : 실행 ㄲrrrrr"+type+","+radio + "  "+  by + " " + keyword );
 		try { 
 			List<HouseDeal> housedeals = hdService.searchByOption(type, (String)radio, (String)by, (String)keyword);
-			entity = handleSuccess(housedeals);
-			String nowPage ="1", cntPerPage="10";
-			
-			
+
+			entity = handleSuccess(housedeals); 
 		}catch (RuntimeException e) {
 			entity=handleException(e);
 		}return entity;
 	
 	}
-
-	
-
 	@GetMapping("/myfavlist2/{likeuid}")
 	public  ResponseEntity<Map<String, Object>> select23(Model model,@PathVariable String likeuid) throws IOException{
 		ResponseEntity<Map<String, Object>> entity = null;
@@ -195,12 +201,13 @@ public class FSelectBoxController extends HttpServlet {
 		return entity;	
 	}
 	
+
 	
     @RequestMapping(value = "/news")
     public ResponseEntity<Map<String, Object>> todayNews() throws IOException {
       ResponseEntity<Map<String, Object>> entity = null;
       try {
-      String url ="https://land.naver.com/news/headline.nhn?bss_ymd=2020061";
+      String url ="https://land.naver.com/news/headline.nhn?bss_ymd=20200616";
     
        
        Document doc =Jsoup.connect(url).get();

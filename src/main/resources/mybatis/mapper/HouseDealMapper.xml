@@ -18,12 +18,21 @@
 		<!-- delete from housedeal where no=#{no}-->
 	</delete>
 
-	<select id="houseDealSelect2" resultType="housedeal" parameterType="string" >
-		      select no, dong, AptName, code, dealAmount, dealAmount,buildYear,
-		  dealYear,dealMonth,dealDay,area,jibun,type,rentMoney 
-		  from housedeal  where no=#{no}
+	<select id="searchByOption" resultType="housedeal" parameterType="pagebean" >
+		  select no, dong, AptName, code, dealAmount, dealAmount, buildYear,
+		  dealYear,dealMonth,dealDay,area,jibun,type,rentMoney from housedeal
+		  <if test="by == 'dong'" > where dong  LIKE CONCAT('%',#{keyword},'%')</if>
+		  <if test="by ==  'aptName'"> where aptName LIKE CONCAT('%',#{keyword},'%') </if>
+		  and type in
+		  <foreach collection ="searchType" item="type" open="(" close=")" separator=",">
+		 #{type}
+		  </foreach>
+		  <if test="orderType == 'no'"> order by 1</if>
+		  <if test="orderType == 'dong'"> order by 2</if>
+		  <if test="orderType == 'aptName'"> order by 3</if>
 	</select>
 	
+<<<<<<< HEAD
 	<select id="searchByOption" resultType="housedeal" parameterType="pagebean" >
 		  select no, dong, AptName, code, dealAmount, dealAmount,buildYear,
 		  dealYear,dealMonth,dealDay,area,jibun,type,rentMoney from housedeal
@@ -40,19 +49,26 @@
 	
 
 	
+=======
+>>>>>>> branch 'master' of https://lab.ssafy.com/raemong21/happyhouse_final.git
 	<select id="houseDealSelectAll" resultType="housedeal">
 		 select no, dong, AptName, code, dealAmount, dealAmount,buildYear,
-		  dealYear,dealMonth,dealDay,area,jibun,type,rentMoney 
+		  dealYear,dealMonth, dealDay, area, jibun, type, rentMoney 
 		  from housedeal limit 5000;
 	</select>
 	
+	<select id="houseDealSelectRecent" resultType="housedeal">
+		select * from housedeal where aptname = #{aptName} order by no desc limit 1;
+	</select>
 	
 	
-	    <select id="houseDealSelect" resultType="housedeal" parameterType="String">
+	<select id="houseDealSelect" resultType="housedeal" parameterType="String">
 		select a.*,b.img,b.lat,b.lng from housedeal a 
 		left outer join houseinfo b on a.aptname = b.aptname 
 		where a.no = #{no} limit 1;
-		</select>
+
+	</select>
+
 		
 		<select id="pageCount" resultType="int">
 			select count(*)
@@ -69,6 +85,5 @@
 			where rn between #{start} and #{end}		
 		
 		</select>
-
 
 </mapper>

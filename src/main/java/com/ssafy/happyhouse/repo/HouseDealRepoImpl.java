@@ -71,6 +71,14 @@ public class HouseDealRepoImpl implements HouseDealRepo {
 	}
 
 	
+	@Override
+	public HouseDeal searchRecent(String aptName) {
+		// TODO Auto-generated method stub
+		return template.selectOne(ns+"houseDealSelectRecent", aptName);
+	}
+
+	
+	
 	
 	@Override
 	public int countBoard() {

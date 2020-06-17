@@ -22,6 +22,9 @@ public interface HouseDealRepo {
 
 	List<HouseDeal> searchAll(int currentPage, int sizePerPage, HousePageBean bean);
 	
+
+	HouseDeal searchRecent(String aptName);
+
 	public int countBoard();
 	public List<HouseDeal> selectBoard(Paging vo);
 	List<HouseDeal> searchByOption(List<String> type, String radio, String by, String keyword);

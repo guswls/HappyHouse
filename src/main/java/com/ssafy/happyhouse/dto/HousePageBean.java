@@ -30,9 +30,6 @@ public class HousePageBean implements Serializable {
 	private String by;
 
 	
-	
-
-	
 	/**웹 페이지 링크*/
 	private String 	pagelink;
 	/**조회할 페이지 번호*/

@@ -46,6 +46,11 @@ public class HouseDealServiceImpl implements HouseDealService {
 	}
 
 	@Override
+
+	public List<HouseDeal> searchByOption(List<String> type, String radio, String by, String keyword) {
+		// TODO Auto-generated method stub
+		return hdRepo.searchByOption(type, radio, by, keyword);}
+
 	public int countBoard() {
 		return hdRepo.countBoard();
 	}
@@ -56,13 +61,9 @@ public class HouseDealServiceImpl implements HouseDealService {
 	}
 	
 	@Override
-	public List<HouseDeal> searchByOption(List<String> type, String radio, String by, String keyword) {
+	public HouseDeal searchRecent(String aptName) {
 		// TODO Auto-generated method stub
-		return hdRepo.searchByOption(type, radio, by, keyword);
+		return hdRepo.searchRecent(aptName);
 	}
-	
-
-	
-	
 
 }
