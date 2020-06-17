@@ -10,7 +10,7 @@
 <head>
 <style>
 #div1 {
-	width: 65%;
+	width: 70%;
 	float: left;
 }
 
@@ -38,16 +38,13 @@
 			<%@ include file="/WEB-INF/views/map.jsp"%>
 		</div>
 
-
-		<div class="div2">
+		<div class="div2 card-body">
 			<img src ="${root}resources/img/newspaper.png" width="50px" align="left"  >
 			<h1> &nbsp; 오늘의 부동산 뉴스</h1>
 			<form>
 				<div id="news"></div>
 			</form>
 		</div>
-		
-
 	</div>
 	
 

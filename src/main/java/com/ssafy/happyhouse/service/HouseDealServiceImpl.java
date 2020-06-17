@@ -50,7 +50,11 @@ public class HouseDealServiceImpl implements HouseDealService {
 		return hdRepo.searchByOption(type, radio, by, keyword);
 	}
 	
-	
+	@Override
+	public HouseDeal searchRecent(String aptName) {
+		// TODO Auto-generated method stub
+		return hdRepo.searchRecent(aptName);
+	}
 	
 
 }

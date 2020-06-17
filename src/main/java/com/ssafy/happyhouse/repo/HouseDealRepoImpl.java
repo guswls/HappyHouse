@@ -68,4 +68,10 @@ public class HouseDealRepoImpl implements HouseDealRepo {
 		pagebean.setSearchType(st);
 		return template.selectList(ns+"searchByOption", pagebean);
 	}
+	
+	@Override
+	public HouseDeal searchRecent(String aptName) {
+		// TODO Auto-generated method stub
+		return template.selectOne(ns+"houseDealSelectRecent", aptName);
+	}
 }

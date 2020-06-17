@@ -38,12 +38,16 @@
 		  from housedeal limit 30
 	</select>
 	
+	<select id="houseDealSelectRecent" resultType="housedeal">
+		select * from housedeal where aptname = #{aptName} order by no desc limit 1;
+	</select>
 	
-	    <select id="houseDealSelect" resultType="housedeal" parameterType="String">
+	
+	<select id="houseDealSelect" resultType="housedeal" parameterType="String">
 		select a.*,b.img,b.lat,b.lng from housedeal a 
 		left outer join houseinfo b on a.aptname = b.aptname 
 		where a.no = #{no} limit 1;
-		</select>
+	</select>
 
 
 </mapper>

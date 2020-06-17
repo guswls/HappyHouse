@@ -115,7 +115,7 @@
 	 				url:'${root}api/board',
 	 				dataType:'json',
 	 				success:function(data){
-	 					var htmlTxt = '<table border="1px solid "><tr><th>번호 </th><th>제목</th><th>날짜</th></tr>';
+	 					var htmlTxt = '<table border="1px solid "><tr bgcolor="#e0e0eb"><th>번호 </th><th>제목</th><th>날짜</th></tr>';
 						$.each(data,function(index, value) {
 							htmlTxt += '<tr><td><a href="javascript:showUpForm('
 										+ value.no
