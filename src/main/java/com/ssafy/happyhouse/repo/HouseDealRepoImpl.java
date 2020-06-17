@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ssafy.happyhouse.dto.HouseDeal;
 import com.ssafy.happyhouse.dto.HousePageBean;
+import com.ssafy.happyhouse.util.Paging;
 
 @Repository
 public class HouseDealRepoImpl implements HouseDealRepo {
@@ -74,4 +75,18 @@ public class HouseDealRepoImpl implements HouseDealRepo {
 		// TODO Auto-generated method stub
 		return template.selectOne(ns+"houseDealSelectRecent", aptName);
 	}
+
+	
+	
+	
+	@Override
+	public int countBoard() {
+		return template.selectOne(ns+"pageCount");
+	}
+
+	@Override
+	public List<HouseDeal> selectBoard(Paging vo) {
+		return template.selectList(ns+"pageList",vo);
+	}
+
 }

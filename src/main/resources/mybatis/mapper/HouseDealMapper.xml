@@ -19,7 +19,7 @@
 	</delete>
 
 	<select id="searchByOption" resultType="housedeal" parameterType="pagebean" >
-		  select no, dong, AptName, code, dealAmount, dealAmount,buildYear,
+		  select no, dong, AptName, code, dealAmount, dealAmount, buildYear,
 		  dealYear,dealMonth,dealDay,area,jibun,type,rentMoney from housedeal
 		  <if test="by == 'dong'" > where dong  LIKE CONCAT('%',#{keyword},'%')</if>
 		  <if test="by ==  'aptName'"> where aptName LIKE CONCAT('%',#{keyword},'%') </if>
@@ -34,8 +34,8 @@
 	
 	<select id="houseDealSelectAll" resultType="housedeal">
 		 select no, dong, AptName, code, dealAmount, dealAmount,buildYear,
-		  dealYear,dealMonth,dealDay,area,jibun,type,rentMoney 
-		  from housedeal limit 30
+		  dealYear,dealMonth, dealDay, area, jibun, type, rentMoney 
+		  from housedeal limit 5000;
 	</select>
 	
 	<select id="houseDealSelectRecent" resultType="housedeal">
@@ -47,7 +47,24 @@
 		select a.*,b.img,b.lat,b.lng from housedeal a 
 		left outer join houseinfo b on a.aptname = b.aptname 
 		where a.no = #{no} limit 1;
+
 	</select>
 
+		
+		<select id="pageCount" resultType="int">
+			select count(*)
+			from housedeal
+		</select>
+		
+		<select id="pageList" resultType="housedeal">
+			select a.*
+			from(
+				select @ROWNUM := @ROWNUM+1 as rn, ant.* from
+					(select *, @ROWNUM:=0 from housedeal order by no asc
+					)
+					ant) a 
+			where rn between #{start} and #{end}		
+		
+		</select>
 
 </mapper>

@@ -79,7 +79,7 @@
 <br><br>
 <br><br>
 <h3><a href = "${root }/"> 목록으로 돌아가기 </a></h3>
-<h3> total like : "${totalLike}"</h3>
+<h3> <img src="${root}resources/img/heart.png" width="50px">total like : "${totalLike}"</h3>
 <c:if test="${userinfo != null}">
 
 <button id="fav"  type="button" class="btn btn-danger">관심목록에 추가하기</button><br>
@@ -94,6 +94,7 @@
 	</c:choose>
 	<br>
 	</div>
+	
 	
 	
 <script>

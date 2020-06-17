@@ -12,10 +12,7 @@
 
 <title>Insert title here</title>
    <script type="text/javascript">
-      function pageMove(pg) { 
-         document.getElementById("pg").value=pg;
-         document.getElementById("pageform").submit();
-      }
+
    </script>
    <style>
       label{padding-right:20px}
@@ -77,56 +74,135 @@
    </form>
    <br>
    <form>
-   <div id="housedeals">
+<div id="housedeals">
 
-   </div>
-         <table>
-           <tr>
-           <br>
-        
-           <td>
-              ${navigation.navigator}
-           </td>
-           </tr>
-           </table>
-      
+   </div>  
+
+  
    </form>
+   
+    
 </div>
 </body>
 
 
 <script >
-function loadHouseDeals() {
-      $.ajax({ 
-          type : 'GET',
-          url : '${root}houselist2',
-          dataType : 'json',
-          success : function(result) {
-             $("#housedeals").empty();
+function HouseLoadPage2(nowPage,cntPerPage) {
+    $.ajax({ 
+        type : 'GET',
+        url : '${root}boardList?nowPage='+nowPage+'&cntPerPage='+cntPerPage,
+        dataType : 'json',
+        success : function(result) {
+         console.log(result);
+        	   $("#housedeals").empty();
+               var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
+               '<th>거래정보</th></tr>' ;
+             
+               console.log("data : ",result);
+               console.log(result.housedeals);
+               $.each(result.housedeals, function(index, value) {
+                
+                  htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"
+                           +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
+                           +"<td class='item' HouseDealNo='"+value.no+"'  ><a href =${root}/housedetail/"+value.no+">"+ value.aptName  +"</td>"
+                           +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.dealAmount   +"</td>"
+                           +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.type   +"</td></tr>";
+                   
+               });
+               htmlTxt += '</table><br>';
+       
+               var tt= '<div style="display: block; text-align: center;">';
+               
+               if(result.paging.startPage !=1){
+            	   tt += "<input type ='button' onclick ='HouseLoadPage2("+(result.paging.startPage-1)+","+result.paging.cntPerPage+")' value ='<'></input>";
+               }
+               for(var i = result.paging.startPage; i<result.paging.endPage; i++){
+            	
+            	  if(i ==  result.paging.startPage){
+            		  tt += '<b> ' + "<input type ='button' value= "+ i + '> </input></b>';
+            	  }else{
+            		  tt += '<b>' + "<input type ='button' onclick ='HouseLoadPage2("+i+","+result.paging.cntPerPage+")' value= "+ i + '> </input></b>';
+                 	   }
+               }
+               
+               if(result.paging.startPage != result.paging.lastPage){
+            	   
+            	   tt += "<input type ='button' onclick ='HouseLoadPage2("+(result.paging.endPage+1)+","+result.paging.cntPerPage+")' value ='>'> </input>";
+            	   
+            	 }
+            
+               tt += '</div>';
+               console.log(tt + "ddasdfasd");
 
-             var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
-             '<th>거래정보</th></tr>' ;
-             $.each(result.data, function(index, value) {
-              
-                htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"
-                         +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
-                         +"<td class='item' HouseDealNo='"+value.no+"'  ><a href =${root}/housedetail/"+value.no+">"+ value.aptName  +"</td>"
-                         +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.dealAmount   +"</td>"
-                         +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.type   +"</td></tr>";
-                 
-             });
-             htmlTxt += '</table>';
-             $('#housedeals').html(htmlTxt);
-          },
-          error: function (e) { 
-             console.log(e.responseText);
-                 alert("통신 Error" + e);
-             } 
-       });
-    
+               
+               $('#housedeals').html(htmlTxt + tt);
+        },
+        error: function (e) { 
+           console.log(e);
+               alert("통신 Error" + e);
+           } 
+     });
+  
 }
-loadHouseDeals();
 
+function loadHouseDeals() {
+    $.ajax({ 
+        type : 'GET',
+        url : '${root}houselist2',
+        dataType : 'json',
+        success : function(result) {
+           $("#housedeals").empty();
+           var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
+           '<th>거래정보</th></tr>' ;
+           console.log("dd");
+           console.log("data : ",result);
+           console.log(result.housedeals);
+           $.each(result.housedeals, function(index, value) {
+            
+              htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"
+                       +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
+                       +"<td class='item' HouseDealNo='"+value.no+"'  ><a href =${root}/housedetail/"+value.no+">"+ value.aptName  +"</td>"
+                       +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.dealAmount   +"</td>"
+                       +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.type   +"</td></tr>";
+               
+           });
+           htmlTxt += '</table><br>';
+   
+           var tt= '<div style="display: block; text-align: center;">';
+           
+           if(result.paging.startPage !=1){
+        	   tt += "<input type ='button' onclick ='HouseLoadPage2("+(result.paging.startPage-1)+","+result.paging.cntPerPage+")' value ='<'></input>";
+           }
+           for(var i = result.paging.startPage; i<result.paging.endPage; i++){
+        	
+        	  if(i ==  result.paging.startPage){
+        		  tt += '<b> ' + "<input type ='button' value= "+ i + '> </input></b>';
+        	  }else{
+        		  tt += '<b>' + "<input type ='button' onclick ='HouseLoadPage2("+i+","+result.paging.cntPerPage+")' value= "+ i + '> </input></b>';
+             	   }
+           }
+           
+           if(result.paging.startPage != result.paging.lastPage){
+        	   
+        	   tt += "<input type ='button' onclick ='HouseLoadPage2("+(result.paging.endPage+1)+","+result.paging.cntPerPage+")' value ='>'> </input>";
+        	   
+        	 }
+        
+
+           tt += '</div>';
+           console.log(tt + "ddasdfasd");
+
+           
+           $('#housedeals').html(htmlTxt + tt);
+        },
+        error: function (e) { 
+           console.log(e.responseText);
+               alert("통신 Error" + e);
+           } 
+     });
+  
+}
+loadHouseDeals(); 
 
 function searchByOption() {
    console.log($("#radioChk>:radio:checked").val());
@@ -157,21 +233,49 @@ function searchByOption() {
            
         }),
         success : function(result) {  
-      console.log(result);
-           $("#housedeals").empty();
+            $("#housedeals").empty();
+            var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
+            '<th>거래정보</th></tr>' ;
+            console.log("dd");
+            console.log("data : ",result);
+            console.log(result.housedeals);
+            $.each(result.housedeals, function(index, value) {
+             
+               htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"
+                        +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
+                        +"<td class='item' HouseDealNo='"+value.no+"'  ><a href =${root}/housedetail/"+value.no+">"+ value.aptName  +"</td>"
+                        +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.dealAmount   +"</td>"
+                        +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.type   +"</td></tr>";
+                
+            });
+            htmlTxt += '</table><br>';
+    
+            var tt= '<div style="display: block; text-align: center;">';
+            
+            if(result.paging.startPage !=1){
+         	   tt += "<input type ='button' onclick ='HouseLoadPage2("+(result.paging.startPage-1)+","+result.paging.cntPerPage+")' value ='<'></input>";
+            }
+            for(var i = result.paging.startPage; i<result.paging.endPage; i++){
+         	
+         	  if(i ==  result.paging.startPage){
+         		  tt += '<b> ' + "<input type ='button' value= "+ i + '> </input></b>';
+         	  }else{
+         		  tt += '<b>' + "<input type ='button' onclick ='HouseLoadPage2("+i+","+result.paging.cntPerPage+")' value= "+ i + '> </input></b>';
+              	   }
+            }
+            
+            if(result.paging.startPage != result.paging.lastPage){
+         	   
+         	   tt += "<input type ='button' onclick ='HouseLoadPage2("+(result.paging.endPage+1)+","+result.paging.cntPerPage+")' value ='>'> </input>";
+         	   
+         	 }
+         
 
-           var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
-           '<th>거래정보</th></tr>' ;
-           $.each(result.data, function(index, value) {
-           
-        	   htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"
-               +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
-               +"<td class='item' HouseDealNo='"+value.no+"'  ><a href =${root}/housedetail/"+value.no+">"+ value.aptName  +"</td>"
-               +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.dealAmount   +"</td>"
-               +"<td class='item' HouseDealNo='"+value.no+"'  >"+ value.type   +"</td></tr>";
-           });
-           htmlTxt += '</table>';
-           $('#housedeals').html(htmlTxt);
+            tt += '</div>';
+            console.log(tt + "ddasdfasd");
+
+            
+            $('#housedeals').html(htmlTxt + tt);
         },
         error: function (e) { 
            console.log(e.responseText);

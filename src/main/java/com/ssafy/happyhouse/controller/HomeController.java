@@ -69,6 +69,11 @@ public class HomeController {
 		return "houselist";	
 	}
 	
+	@RequestMapping("test")
+	public String test123() {
+		return "test";	
+	}
+	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -148,12 +153,7 @@ public class HomeController {
 		return "myfavlist";
 	}
 	
-	@GetMapping("/houselist")
-	public String selectAll() {
-		return"houselist";
-	}
-	
-	   
+
 
 	
 	private ResponseEntity<Map<String, Object>> handleSuccess(Object data) {
