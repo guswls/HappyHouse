@@ -93,13 +93,13 @@ function HouseLoadPage2(nowPage,cntPerPage) {
         url : '${root}boardList?nowPage='+nowPage+'&cntPerPage='+cntPerPage,
         dataType : 'json',
         success : function(result) {
-         console.log(result);
+       //  console.log(result);
         	   $("#housedeals").empty();
                var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
                '<th>거래정보</th></tr>' ;
              
-               console.log("data : ",result);
-               console.log(result.housedeals);
+           //    console.log("data : ",result);
+            //   console.log(result.housedeals);
                $.each(result.housedeals, function(index, value) {
                 
                   htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"
@@ -132,8 +132,7 @@ function HouseLoadPage2(nowPage,cntPerPage) {
             	 }
             
                tt += '</div>';
-               console.log(tt + "ddasdfasd");
-
+            
                
                $('#housedeals').html(htmlTxt + tt);
         },
@@ -154,10 +153,7 @@ function loadHouseDeals() {
            $("#housedeals").empty();
            var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
            '<th>거래정보</th></tr>' ;
-           console.log("dd");
-           console.log("data : ",result);
-           console.log(result.housedeals);
-           $.each(result.housedeals, function(index, value) {
+            $.each(result.housedeals, function(index, value) {
             
               htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"
                        +"<td class='item' HouseDealNo='"+value.no+"' >"+ value.dong  +"</td>"
@@ -190,8 +186,7 @@ function loadHouseDeals() {
         
 
            tt += '</div>';
-           console.log(tt + "ddasdfasd");
-
+       
            
            $('#housedeals').html(htmlTxt + tt);
         },
@@ -211,14 +206,7 @@ function searchByOption() {
          .each(
                (i, e) => { searchType.push(e.value);}
          );
-   console.log(searchType);
-   console.log( {
-       type: searchType,
-       radio:  $("#radioChk>:radio:checked").val(),
-       by: $("#by").val() ,
-       keyword:$("#keyword") .val() 
-   }
-    );
+
    
     $.ajax({ 
         type : 'POST',
@@ -236,9 +224,6 @@ function searchByOption() {
             $("#housedeals").empty();
             var htmlTxt = '<table id="employees" class="table table-bordered table-condensed"><tr bgcolor="#e0e0eb"><th>식별번호</th><th>법정동</th><th>아파트 이름</th><th>실거래가</th>'+
             '<th>거래정보</th></tr>' ;
-            console.log("ddasdfasdfa");
-            console.log("data : ",result);
-            console.log(result.data);
             $.each(result.data, function(index, value) {
              
                htmlTxt += "<tr><td class='item' HouseDealNo='"+value.no+"'>"+ value.no  +"</td>"

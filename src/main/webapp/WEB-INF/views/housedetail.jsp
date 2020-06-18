@@ -98,7 +98,6 @@
 	
 	
 <script>
-console.log("${root}");
 $('#fav').click(function () {
 	$.ajax({
 		type:'POST',
