@@ -80,7 +80,7 @@ function getRank() {
         },
         error: function (e) { 
            console.log(e.responseText);
-               alert("통신 조짐" + e);
+               alert("통신 Error" + e);
            } 
      });
   
