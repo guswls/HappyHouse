@@ -67,7 +67,7 @@
 
 							<label>이사날짜 : <input type="date" class="form-control"
 								id="day" required="required"></label> <label>짐 갯수 : <input
-								type="text" class="form-control" id="car" required="required"></label> 
+								type="text" class="form-control" id="car" required="required" placeholder="우체국 5호박스 기준 "></label> 
 								<input type="button" value="견적 제출" class="btn btn-primary" onclick="registFun()">
 
 						</form>
@@ -156,7 +156,10 @@
 	getNews();
 
 	function registFun(){
-		alert("견적서가 제출되었습니다");
+		
+		var cnt = $("#car").val();
+		var basic = parseInt(70000) + (parseInt(cnt)*parseInt(8850));
+		alert("견적서가 제출되었습니다. 예상금액은 "+ basic+"입니다." );
 	}
 
 </script>

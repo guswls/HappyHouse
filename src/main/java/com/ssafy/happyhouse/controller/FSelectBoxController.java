@@ -231,13 +231,13 @@ public class FSelectBoxController extends HttpServlet {
               chk[iv] = true;
            }
        }
-       System.out.println(news);
+      // System.out.println(news);
     
        entity = handleSuccess(news);
       }catch (RuntimeException e) {
           entity = handleException(e);
        }
-       System.out.println(entity + "이거는 news");
+  //     System.out.println(entity + "이거는 news");
        return entity;
     }
 
