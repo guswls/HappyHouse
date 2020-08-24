@@ -52,7 +52,7 @@
 <!-- map start -->
 <div id="map" style="width: 100%; height: 500px; margin: auto;"></div>
 <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF4qweFIAhUwelzQWZ1x8h0IDHEks2o9E&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"></script>
 <script>
 	var multi = {lat: 37.5665734, lng: 126.978179};
 	var map;
